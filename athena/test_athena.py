@@ -73,7 +73,7 @@ class Example(unittest.TestCase):
 
         cls.can_paginate_response = True
 
-        # TODO: cls.create_data_catalog_response = {}
+        cls.create_data_catalog_response = {}
 
         cls.create_named_query_response = {
             'NamedQueryId': 'string'
@@ -212,7 +212,7 @@ class Example(unittest.TestCase):
             }
         }
 
-        # cls.waiter = waiter.
+        # cls.waiter = WaiterModel(waiter_json_model)
 
         cls.get_work_group_response = {
             'WorkGroup': {
@@ -259,6 +259,78 @@ class Example(unittest.TestCase):
             'NextToken': 'string'
         }
 
+        cls.list_query_executions_response = {
+            'QueryExecutionIds': [
+                'string',
+            ],
+            'NextToken': 'string'
+        }
+
+        cls.list_table_metadata_response = {
+            'TableMetadataList': [
+                {
+                    'Name': 'string',
+                    'CreateTime': datetime(2015, 1, 1),
+                    'LastAccessTime': datetime(2015, 1, 1),
+                    'TableType': 'string',
+                    'Columns': [
+                        {
+                            'Name': 'string',
+                            'Type': 'string',
+                            'Comment': 'string'
+                        },
+                    ],
+                    'PartitionKeys': [
+                        {
+                            'Name': 'string',
+                            'Type': 'string',
+                            'Comment': 'string'
+                        },
+                    ],
+                    'Parameters': {
+                        'string': 'string'
+                    }
+                },
+            ],
+            'NextToken': 'string'
+        }
+
+        cls.list_tags_for_resource_response = {
+            'Tags': [
+                {
+                    'Key': 'string',
+                    'Value': 'string'
+                },
+            ],
+            'NextToken': 'string'
+        }
+
+        cls.list_work_groups_response = {
+            'WorkGroups': [
+                {
+                    'Name': 'string',
+                    'State': 'ENABLED',
+                    'Description': 'string',
+                    'CreationTime': datetime(2015, 1, 1)
+                },
+            ],
+            'NextToken': 'string'
+        }
+
+        cls.start_query_execution_response = {
+            'QueryExecutionId': 'string'
+        }
+
+        cls.stop_query_execution_response = {}
+
+        cls.tag_resource_response = {}
+
+        cls.untag_resource_response = {}
+
+        cls.update_data_catalog_response = {}
+
+        cls.update_work_group_response = {}
+
     @patch('boto3.client')
     def test_batch_get_named_query(self, athena_mock):
         athena_mock.return_value.batch_get_named_query.return_value = self.batch_get_named_query_response
@@ -276,6 +348,12 @@ class Example(unittest.TestCase):
         athena_mock.return_value.can_paginate.return_value = self.can_paginate_response
         response = athena.can_paginate()
         self.assertEqual(response, self.can_paginate_response)
+
+    @patch('boto3.client')
+    def test_create_data_catalog(self, athena_mock):
+        athena_mock.return_value.create_data_catalog.return_value = self.create_data_catalog_response
+        response = athena.create_data_catalog()
+        self.assertEqual(response, self.create_data_catalog_response)
 
     @patch('boto3.client')
     def test_create_named_query_response(self, athena_mock):
@@ -366,6 +444,66 @@ class Example(unittest.TestCase):
         athena_mock.return_value.list_databases.return_value = self.list_databases_response
         response = athena.list_databases()
         self.assertEqual(response, self.list_databases_response)
+
+    @patch('boto3.client')
+    def test_list_databases(self, athena_mock):
+        athena_mock.return_value.list_query_executions.return_value = self.list_query_executions_response
+        response = athena.list_query_executions()
+        self.assertEqual(response, self.list_query_executions_response)
+
+    @patch('boto3.client')
+    def test_list_table_metadata(self, athena_mock):
+        athena_mock.return_value.list_table_metadata.return_value = self.list_table_metadata_response
+        response = athena.list_table_metadata()
+        self.assertEqual(response, self.list_table_metadata_response)
+
+    @patch('boto3.client')
+    def test_list_tags_for_resource(self, athena_mock):
+        athena_mock.return_value.list_tags_for_resource.return_value = self.list_tags_for_resource_response
+        response = athena.list_tags_for_resource()
+        self.assertEqual(response, self.list_tags_for_resource_response)
+
+    @patch('boto3.client')
+    def test_list_work_groups(self, athena_mock):
+        athena_mock.return_value.list_work_groups.return_value = self.list_work_groups_response
+        response = athena.list_work_groups()
+        self.assertEqual(response, self.list_work_groups_response)
+
+    @patch('boto3.client')
+    def test_start_query_execution(self, athena_mock):
+        athena_mock.return_value.start_query_execution.return_value = self.start_query_execution_response
+        response = athena.start_query_execution()
+        self.assertEqual(response, self.start_query_execution_response)
+
+    @patch('boto3.client')
+    def test_stop_query_execution(self, athena_mock):
+        athena_mock.return_value.stop_query_execution.return_value = self.stop_query_execution_response
+        response = athena.stop_query_execution()
+        self.assertEqual(response, self.stop_query_execution_response)
+
+    @patch('boto3.client')
+    def test_tag_resource(self, athena_mock):
+        athena_mock.return_value.tag_resource.return_value = self.tag_resource_response
+        response = athena.tag_resource()
+        self.assertEqual(response, self.tag_resource_response)
+    
+    @patch('boto3.client')
+    def test_untag_resource(self, athena_mock):
+        athena_mock.return_value.untag_resource.return_value = self.untag_resource_response
+        response = athena.untag_resource()
+        self.assertEqual(response, self.untag_resource_response)
+
+    @patch('boto3.client')
+    def test_update_data_catalog(self, athena_mock):
+        athena_mock.return_value.update_data_catalog.return_value = self.update_data_catalog_response
+        response = athena.update_data_catalog()
+        self.assertEqual(response, self.update_data_catalog_response)
+
+    @patch('boto3.client')
+    def test_update_work_group(self, athena_mock):
+        athena_mock.return_value.update_work_group.return_value = self.update_work_group_response
+        response = athena.update_work_group()
+        self.assertEqual(response, self.update_work_group_response)
 
 if __name__ == '__main__':
     unittest.main()

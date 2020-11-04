@@ -23,6 +23,14 @@ def can_paginate():
     response = athena.can_paginate("foo_bar_operation")
     return response
 
+def create_data_catalog():
+    athena = boto3.client('athena')
+    response = athena.create_data_catalog(
+        Name='string',
+        Type='LAMBDA'
+    )
+    return response
+
 def create_named_query():
     athena = boto3.client('athena')
     response = athena.create_named_query(
@@ -133,5 +141,95 @@ def list_databases():
     athena = boto3.client('athena')
     response = athena.list_databases(
         CatalogName='string'
+    )
+    return response
+
+def list_query_executions():
+    athena = boto3.client('athena')
+    response = athena.list_query_executions()
+    return response
+
+def list_table_metadata():
+    athena = boto3.client('athena')
+    response = athena.list_table_metadata(
+        CatalogName='string',
+        DatabaseName='string'
+    )
+    return response
+
+def list_tags_for_resource():
+    athena = boto3.client('athena')
+    response = athena.list_tags_for_resource(
+        ResourceARN='string'
+    )
+    return response
+
+def list_work_groups():
+    athena = boto3.client('athena')
+    response = athena.list_work_groups()
+    return response
+
+def start_query_execution():
+    athena = boto3.client('athena')
+    response = athena.start_query_execution(
+        QueryString='string'
+    )
+    return response
+
+def stop_query_execution():
+    athena = boto3.client('athena')
+    response = athena.stop_query_execution(
+        QueryExecutionId='string'
+    )
+    return response
+
+def tag_resource():
+    athena = boto3.client('athena')
+    response = athena.tag_resource(
+        ResourceARN='string',
+        Tags=[
+            {
+                'Key': 'string',
+                'Value': 'string'
+            },
+        ]
+    )
+    return response
+
+def tag_resource():
+    athena = boto3.client('athena')
+    response = athena.tag_resource(
+        ResourceARN='string',
+        Tags=[
+            {
+                'Key': 'string',
+                'Value': 'string'
+            },
+        ]
+    )
+    return response
+
+def untag_resource():
+    athena = boto3.client('athena')
+    response = athena.untag_resource(
+        ResourceARN='string',
+        TagKeys=[
+            'string',
+        ]
+    )
+    return response
+
+def update_data_catalog():
+    athena = boto3.client('athena')
+    response = athena.update_data_catalog(
+        Name='string',
+        Type='LAMBDA'
+    )
+    return response
+
+def update_work_group():
+    athena = boto3.client('athena')
+    response = athena.update_work_group(
+        WorkGroup='string'
     )
     return response
