@@ -196,19 +196,6 @@ def tag_resource():
     )
     return response
 
-def tag_resource():
-    athena = boto3.client('athena')
-    response = athena.tag_resource(
-        ResourceARN='string',
-        Tags=[
-            {
-                'Key': 'string',
-                'Value': 'string'
-            },
-        ]
-    )
-    return response
-
 def untag_resource():
     athena = boto3.client('athena')
     response = athena.untag_resource(
